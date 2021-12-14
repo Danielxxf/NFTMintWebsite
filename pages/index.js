@@ -219,6 +219,13 @@ export default function Home() {
         <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
+        <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png"/>
+        <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png"/>
+        <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png"/>
+        <link rel="manifest" href="assets/site.webmanifest"/>
+        <link rel="mask-icon" href="assets/safari-pinned-tab.svg" color="#5bbad5"/>
+        <meta name="msapplication-TileColor" content="#da532c"/>
+        <meta name="theme-color" content="#ffffff"/>
         <noscript id="__next_css__DO_NOT_USE__" />
       </Head>
       <nav className="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
