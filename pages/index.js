@@ -219,6 +219,7 @@ export default function Home() {
         <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
+        <noscript id="__next_css__DO_NOT_USE__" />
       </Head>
       <nav className="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
         <div className="container px-4 px-lg-5">
@@ -271,7 +272,7 @@ export default function Home() {
                         Clothing:1<br/>
                         Ornament:1<br/>
                         Item:1<br/>
-                        Emotion:1<br/>
+                        Emotion:1
                       </div>
                     </div>
                   </a>
@@ -290,7 +291,7 @@ export default function Home() {
                         Clothing:1<br/>
                         Ornament:1<br/>
                         Item:1<br/>
-                        Emotion:1<br/>
+                        Emotion:1
                       </div>
                     </div>
                   </a>
@@ -309,7 +310,7 @@ export default function Home() {
                         Clothing:1<br/>
                         Ornament:1<br/>
                         Item:1<br/>
-                        Emotion:1<br/>
+                        Emotion:1
                       </div>
                     </div>
                   </a>
@@ -328,7 +329,7 @@ export default function Home() {
                         Clothing:1<br/>
                         Ornament:1<br/>
                         Item:1<br/>
-                        Emotion:1<br/>
+                        Emotion:1
                       </div>
                     </div>
                   </a>
@@ -347,7 +348,7 @@ export default function Home() {
                         Clothing:1<br/>
                         Ornament:1<br/>
                         Item:1<br/>
-                        Emotion:1<br/>
+                        Emotion:1
                       </div>
                     </div>
                   </a>
@@ -366,7 +367,7 @@ export default function Home() {
                         Clothing:1<br/>
                         Ornament:1<br/>
                         Item:1<br/>
-                        Emotion:1<br/>
+                        Emotion:1
                       </div>
                     </div>
                   </a>
