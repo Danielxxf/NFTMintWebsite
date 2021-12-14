@@ -1,0 +1,26 @@
+{
+    "apps": [
+        {
+          "name": "ByteLand", 
+          "script": "server.js",
+          "env":{
+              "COMON_VARIABLE": "true"
+          },
+          "env_production": {
+              "NODE_ENV": "production",
+              "HOST": "localhost"
+          }
+        }
+    ],
+    "deploy": {
+        "production": {
+            "user": "root",
+            "host": ["43.154.34.27"],
+            "ref": "origin/main",
+            "repo": "https://github.com/Danielxxf/ByteCats-NFTMintStation.git/",
+            "path": "/root/ByteCats-NFTMintStation", 
+            "ssh_options": "StrictHostKeyChecking=no",
+            "post-deploy": "npm install"
+        }
+    }
+  }
