@@ -34,7 +34,7 @@ export default function Home() {
 
   useEffect( async() => { 
     signIn()
-  }, [rightNetwork])
+  }, [rightNetwork,signedIn])
 
   async function clickSignIn() {
     if (typeof window.web3 === 'undefined') {
@@ -49,30 +49,6 @@ export default function Home() {
     window.web3 = new Web3(Web3.givenProvider);
     // updateState()
     if (typeof window.web3 !== 'undefined') {
-      // Has been deprecated
-      // Use existing gateway
-      //window.web3 = new Web3(window.ethereum);
-      // window.ethereum.enable()
-      //   .then(function (accounts) {
-      //     window.web3.eth.net.getId()
-      //     // checks if connected network is mainnet (change this to rinkeby if you wanna test on testnet)
-      //     .then((network) => {
-      //       console.log(network);
-      //       if(network != 4002){
-      //         setRightNetwork(false)
-      //         alert("You are on wrong network. Please switch to Fantom Mainnet or you won't be able to do anything here")
-      //         switchToRight()
-      //       } else setRightNetwork(true)
-      //     });  
-      //     let wallet = accounts[0]
-      //     setWalletAddress(wallet)
-      //     setSignedIn(true)
-      //     callContractData(wallet)
-      // })
-      // .catch(function (error) {
-      // // Handle error. Likely the user rejected the login
-      //   console.error(error)
-      // })
       ethereum
       .request({ method: 'eth_requestAccounts' })
       .then(function (handleAccountsChanged){
@@ -99,13 +75,16 @@ export default function Home() {
           // EIP-1193 userRejectedRequest error
           console.log('Please connect to MetaMask.');
         } else {
-          console.error(error);
+          console.error(error)
         }
       });
     }
-    ethereum.on('accountsChanged', function (accounts) {
+    ethereum.on('accountsChanged', (accounts) => {
+      if(!ethereum.isConnected()){
+        signOut()
+      }
       let wallet = accounts[0]
-      setWalletAddress(wallet)
+      if(wallet != undefined)setWalletAddress(wallet)
     });
     ethereum.on('chainChanged', (chainId) => {
       // Handle the new chain.
@@ -115,6 +94,13 @@ export default function Home() {
         setRightNetwork(false)
       } else setRightNetwork(true)
     });
+  }
+
+  async function signOut() {
+    setSignedIn(false)
+    // setMinting(false)
+    // ethereum.removeListener('accountsChanged', handleAccountsChanged);
+    // ethereum.removeListener('chainChanged', handleChainChanged);
   }
 
   async function switchToRight() {
@@ -137,14 +123,6 @@ export default function Home() {
       }
       // handle other "switch" errors
     }
-  }
-
-
-//
-
-  async function signOut() {
-    setSignedIn(false)
-    // setMinting(false)
   }
   
   async function callContractData(wallet) {
@@ -207,27 +185,7 @@ export default function Home() {
   };
   return (
     <div>
-      <Head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Byteland</title>
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
-        <link href="css/styles.css" rel="stylesheet" />
-        <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png"/>
-        <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png"/>
-        <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png"/>
-        <link rel="manifest" href="assets/site.webmanifest"/>
-        <link rel="mask-icon" href="assets/safari-pinned-tab.svg" color="#5bbad5"/>
-        <meta name="msapplication-TileColor" content="#da532c"/>
-        <meta name="theme-color" content="#ffffff"/>
-        <noscript id="__next_css__DO_NOT_USE__" />
-      </Head>
+      <Header/>
       <nav className="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
         <div className="container px-4 px-lg-5">
           <a className="navbar-brand" href="#page-top">Byteland</a>
@@ -388,7 +346,7 @@ export default function Home() {
             <div className="col-lg-3 col-md-6 text-center">
               <div className="mt-5">
                 <h3 className="h4 mb-2">NFT</h3>
-                <p className="text-muted mb-0">Byte cats is a collection of ERC721 token stored on Fantom blockchain. The Metadata of Byte Cats is stored by IPFS distributed file system.Every NFT&apos;s tokenurl is encrypted by SHA256 algorithm.</p>
+                <p className="text-muted mb-0">Byte cats is a collection of ERC721 token stored on Fantom blockchain. The Metadata of Byte Cats is stored by IPFS distributed file system. Every NFT&apos;s tokenurl is encrypted by SHA256 algorithm.</p>
               </div>
             </div>
             <div className="col-lg-3 col-md-6 text-center">
@@ -445,7 +403,6 @@ export default function Home() {
       <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" strategy="beforeInteractive"></Script>
       <Script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js" strategy="beforeInteractive"></Script>
       <Script src="js/scripts.js" strategy="beforeInteractive"></Script>
-      <Script src="https://cdn.startbootstrap.com/sb-forms-latest.js" strategy="beforeInteractive"></Script>
     </div>
   )
 }
