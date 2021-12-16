@@ -1,8 +1,7 @@
 import Web3 from "web3";
-import Head from 'next/head'
 import Script from 'next/script'
 import React, {useState, useEffect} from 'react';
-import { Header, Navigation, MintButton, ConnectButton } from '../components/components';
+import { Header, MintButton, ConnectButton } from '../components/components';
 import {ADDRESS, ABI} from "../config.js"
 
 
@@ -34,7 +33,7 @@ export default function Home() {
 
   useEffect( async() => { 
     signIn()
-  }, [rightNetwork,signedIn])
+  }, [rightNetwork])
 
   async function clickSignIn() {
     if (typeof window.web3 === 'undefined') {
@@ -62,7 +61,6 @@ export default function Home() {
             switchToRight()
           } else {
             setRightNetwork(true)
-            console.log("1",rightNetwork)
           }
         });  
         let wallet = handleAccountsChanged[0]
@@ -104,6 +102,7 @@ export default function Home() {
   }
 
   async function switchToRight() {
+    console.log("call switch")
     try {
       await ethereum.request({
         method: 'wallet_switchEthereumChain',
