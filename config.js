@@ -1,7 +1,7 @@
 
-export const ADDRESS = "0x0b538B229CfE62B2d9aB6C923E883FB60B3f7BA5"
+export const ADDRESS = "0x8760A5e22CCdbe5beaF7CB110e61c27dde8Dd6EA"
 export const ABI = [
-{
+	{
 		"inputs": [],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
@@ -190,6 +190,32 @@ export const ABI = [
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "communityAddress",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "donationAddress",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "uint256",
@@ -234,7 +260,7 @@ export const ABI = [
 	},
 	{
 		"inputs": [],
-		"name": "maxBuy",
+		"name": "maxMint",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -266,7 +292,7 @@ export const ABI = [
 				"type": "uint256"
 			}
 		],
-		"name": "mintCats",
+		"name": "mint",
 		"outputs": [],
 		"stateMutability": "payable",
 		"type": "function"
@@ -413,19 +439,6 @@ export const ABI = [
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			}
-		],
-		"name": "safeMint",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
 				"name": "from",
 				"type": "address"
 			},
@@ -512,7 +525,20 @@ export const ABI = [
 				"type": "address"
 			}
 		],
-		"name": "setDevAddress",
+		"name": "setCommunityAddress",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_address",
+				"type": "address"
+			}
+		],
+		"name": "setDonationAddress",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -567,11 +593,11 @@ export const ABI = [
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "_royaltyAddress",
+				"name": "_address",
 				"type": "address"
 			}
 		],
-		"name": "setRoyaltyAddress",
+		"name": "setTeamAddress",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -641,6 +667,19 @@ export const ABI = [
 				"internalType": "string",
 				"name": "",
 				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "teamAddress",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
 			}
 		],
 		"stateMutability": "view",
@@ -793,25 +832,6 @@ export const ABI = [
 		"name": "transferOwnership",
 		"outputs": [],
 		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "whitelistBalance",
-		"outputs": [
-			{
-				"internalType": "uint8",
-				"name": "",
-				"type": "uint8"
-			}
-		],
-		"stateMutability": "view",
 		"type": "function"
 	},
 	{
