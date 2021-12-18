@@ -28,16 +28,16 @@ export class Header extends Component {
     }
   }
 
-// export class Navigation extends Component {
-//   render() {
-//     return<nav className="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-//         <div className="container px-4 px-lg-5">
-//         <a className="navbar-brand" href="#page-top">Byte Land  -  Cat Season🐈</a>
-//         {/* <ConnectButton className="btn btn-primary" signedIn={signedIn} signOut={signOut} signIn={clickSignIn} walletAddress={walletAddress} /> */}
-//         </div>
-//     </nav>
-//   }
-// }
+export class Navigation extends Component {
+  render() {
+    return<nav className="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+      <div className="container px-4 px-lg-5">
+          <a className="navbar-brand" href="/">Byteland</a>
+          <ConnectButton signedIn={this.props.signedIn} signIn={this.props.signIn} walletAddress={this.props.walletAddress} />
+      </div>
+    </nav>
+  }
+}
 
 export function MintButton(props) {
  
@@ -61,14 +61,14 @@ export function MintButton(props) {
       ) 
   } else {
     return (
-    <>
-      <button disabled className="btn btn-primary">PLEASE CONNECT WALLET BEFORE MINT</button>
-      <div className="m-3">
-        <Link href="https://web3wp.com/blog/how-to-setup-blockchain-digital-wallet/">
-            <a target="_blank" rel="noreferrer">Need help?</a>
-        </Link>
-      </div>
-    </>
+      <>
+        <button disabled className="btn btn-primary">PLEASE CONNECT WALLET BEFORE MINT</button>
+        <div className="m-3">
+          <Link href="https://web3wp.com/blog/how-to-setup-blockchain-digital-wallet/">
+              <a target="_blank" rel="noreferrer">Need help?</a>
+          </Link>
+        </div>
+      </>
     )
   }
 }
@@ -77,14 +77,58 @@ export function ConnectButton(props) {
  
   if (props.signedIn) {
     return (
-      <button className="btn btn-primary">Adress: {props.walletAddress.substring(0,6)}...{props.walletAddress.substring(38)}</button>
+      <Link href='/MyCats'>
+        <a className="btn btn-primary">Adress: {props.walletAddress.substring(0,6)}...{props.walletAddress.substring(38)}</a>
+      </Link>
       )
   } 
   else {
     return (
       <>
-      <button onClick={props.signIn} className="btn btn-primary">Connect Wallet</button>
+        <button onClick={props.signIn} className="btn btn-primary">Connect Wallet</button>
       </>
     )
   }
+}
+
+export function ItemGroup(props){
+  var meta = props.metaData
+  meta=meta.sort(function(a,b){
+    return a.tokenId>b.tokenId ? 1:-1
+  })
+  // meta = quickSort(meta)
+  console.log("m",meta)
+  return (<>
+    {meta.map(
+      (jsonData)=>(
+          <Item key={jsonData.tokenId} itemData={jsonData}></Item>
+      )
+    )}
+  </>)
+}
+
+export function Item(props){
+  console.log("Item!")
+  return(
+    <div className="col-lg-2 col-sm-6 m-1 text-white-75 text-center" style={{fontSize: '1.5rem'}}>
+      {props.itemData.name}
+      <div className="portfolio-box" href={props.itemData.image} title={props.itemData.name}>
+        <img className="img-fluid show noselect" src={props.itemData.image} alt="..." />
+        <div className="portfolio-box-caption">
+          <div className="project-name show p-2" style={{color: '#000', background:'rgba(255, 255, 255, 0.9)', fontSize: '1.2rem'}}>
+            <a href={props.itemData.image} style={{color: '#2E9AFE'}} target="_blank" rel="noreferrer">Image URI</a><br/>
+            Background: {props.itemData.attributes[0].value}<br/>
+            Body: {props.itemData.attributes[1].value}<br/>
+            Ear: {props.itemData.attributes[2].value}<br/>
+            Eye: {props.itemData.attributes[3].value}<br/>
+            Clothing: {props.itemData.attributes[4].value}<br/>
+            Head: {props.itemData.attributes[5].value}<br/>
+            Emotion: {props.itemData.attributes[6].value}<br/>
+            Accessory: {props.itemData.attributes[7].value}<br/>
+            Accessory: {props.itemData.attributes[8].value}
+          </div>
+        </div>
+      </div>
+  </div>
+  )
 }
