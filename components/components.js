@@ -32,8 +32,10 @@ export class Navigation extends Component {
   render() {
     return<nav className="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
       <div className="container px-4 px-lg-5">
-          <a className="navbar-brand" href="/">Byteland</a>
-          <ConnectButton signedIn={this.props.signedIn} signIn={this.props.signIn} walletAddress={this.props.walletAddress} />
+        <Link href="/">
+          <a className="navbar-brand">Byteland</a>
+        </Link>
+        <ConnectButton signedIn={this.props.signedIn} signIn={this.props.signIn} walletAddress={this.props.walletAddress} />
       </div>
     </nav>
   }
