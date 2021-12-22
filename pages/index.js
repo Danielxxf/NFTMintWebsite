@@ -1,7 +1,7 @@
 import Web3 from "web3";
 import Script from 'next/script'
 import React, {useState, useEffect} from 'react';
-import { Header, MintButton, ConnectButton, Navigation } from '../components/components';
+import { Header, MintButton, Navigation, Footer} from '../components/components';
 import {ADDRESS, ABI} from "../config.js"
 
 
@@ -67,7 +67,7 @@ export default function Home() {
         let wallet = handleAccountsChanged[0]
         setWalletAddress(wallet)
         setSignedIn(true)
-        callContractData(wallet)
+        // callContractData(wallet)
       })
       .catch((error) => {
         if (error.code === 4001) {
@@ -103,7 +103,6 @@ export default function Home() {
   }
 
   async function switchToRight() {
-    console.log("call switch")
     try {
       await ethereum.request({
         method: 'wallet_switchEthereumChain',
@@ -126,7 +125,6 @@ export default function Home() {
   }
   
   async function callContractData(wallet) {
-    console.log("callcontract", rightNetwork)
     if(rightNetwork) {
       const contract = new window.web3.eth.Contract(ABI, ADDRESS)
       setContract(contract)
@@ -145,44 +143,45 @@ export default function Home() {
     }
   }
   
-  async function Mint(how_many_nfts) {
+//   async function Mint(how_many_nfts) {
 
-    // setMinting(false)
-    if (rightNetwork) {
-      if (contract) {
-        const price = Number(nftPrice) * how_many_nfts 
-        var gasAmount = await contract.methods.mint(how_many_nfts).estimateGas({from: walletAddress, value: price})
-        gasAmount = Math.round(gasAmount * 1.2); //add some padding so users don't lose it in a dropped transaction (this is just limit)
-        console.log("gas limit estimation = " + gasAmount + " units");
-        console.log({from: walletAddress, value: price})
+//     // setMinting(false)
+//     if (rightNetwork) {
+//       if (contract) {
+//         const price = Number(nftPrice) * how_many_nfts 
+//         var gasAmount = await contract.methods.mint(how_many_nfts).estimateGas({from: walletAddress, value: price})
+//         gasAmount = Math.round(gasAmount * 1.2); //add some padding so users don't lose it in a dropped transaction (this is just limit)
+//         console.log("gas limit estimation = " + gasAmount + " units");
+//         console.log({from: walletAddress, value: price})
 
-        contract.methods
-          .mint(how_many_nfts)
-          .send({from: walletAddress, value: price, gas: String(gasAmount)})
-          .on('error', function(error){
-            setError(error.message)
-            setMinting(false)
-          })
-          .on('transactionHash', function(transactionHash){ 
-            setMinting(true)
-            setTransactionHash(transactionHash)
-            console.log("transactionHash", transactionHash)
-            })
-          .then(function(newContractInstance){
-              console.log(newContractInstance) // instance with the new contract address
-              callContractData(walletAddress)
-              // Router.push('/success')
-              //setMinting(false)
-          });
+//         contract.methods
+//           .mint(how_many_nfts)
+//           .send({from: walletAddress, value: price, gas: String(gasAmount)})
+//           .on('error', function(error){
+//             setError(error.message)
+//             setMinting(false)
+//           })
+//           .on('transactionHash', function(transactionHash){ 
+//             setMinting(true)
+//             setTransactionHash(transactionHash)
+//             console.log("transactionHash", transactionHash)
+//             })
+//           .then(function(newContractInstance){
+//               console.log(newContractInstance) // instance with the new contract address
+//               callContractData(walletAddress)
+//               // Router.push('/success')
+//               //setMinting(false)
+//           });
             
-      } else {
-          console.log("Wallet not connected")
-      }
-    }
-    else {
-      switchToRight()
-    }
-};
+//       } else {
+//           console.log("Wallet not connected")
+//       }
+//     }
+//     else {
+//       switchToRight()
+//     }
+// };
+
   return (
     <div>
       <Header/>
@@ -206,9 +205,10 @@ export default function Home() {
                 <span>I want  </span>
                 <input className="text-white-75 text-center" type="number" min="1" max="5" value={how_many_nfts} onChange={ e => set_how_many_nfts(e.target.value) } name=""/>
                 <span>  Byte Cats!</span><br />
-                <span>(max: 5)</span>
+                <span>(max: 10)</span>
               </div>
-              <MintButton onClick={() => Mint(how_many_nfts)} saleStarted={saleStarted} nfts={how_many_nfts} signedIn={signedIn} price={nftPrice} rightNetwork={rightNetwork}/>
+              <button className="btn btn-xl btn-primary">Mint has not started yet.</button>
+              {/* <MintButton onClick={() => Mint(how_many_nfts)} saleStarted={saleStarted} nfts={how_many_nfts} signedIn={signedIn} price={nftPrice} rightNetwork={rightNetwork}/> */}
             </div>
           </div>
         </div>
@@ -216,118 +216,118 @@ export default function Home() {
       <section className="page-section" id="services">
         <div className="container px-4 px-lg-5">
           <div className="m-5" id="portfolio">
-            <div className="container-fluid p-0">
-              <div className="row g-0">
+            <div className="container-fluid p-5">
+              <div className="row g-0 m-1">
                 <div className="col-lg-4 col-sm-6">
-                  <a className="portfolio-box" href="assets/img/portfolio/fullsize/1.png" title="Byte Cat #1">
+                  <a className="portfolio-box" href="assets/img/portfolio/fullsize/1.png" title="Byte Cat">
                     <img className="img-fluid" src="assets/img/portfolio/thumbnails/1.png" alt="..." />
                     <div className="portfolio-box-caption">
-                      <div className="project-category text-white-50">Byte Cat #1</div>
+                      <div className="project-category text-white-50">Byte Cat</div>
                       <div className="project-name">
-                        Background: <br/>
-                        Body: <br/>
-                        Ear: <br/>
-                        Eye: <br/>
-                        Clothing: <br/>
-                        Head: <br/>
-                        Emotion: <br/>
-                        Accessory: <br/>
-                        Accessory: 
+                        Background: Haizakura<br/>
+                        Body: Pink<br/>
+                        Ear: Pink<br/>
+                        Eye: Amber<br/>
+                        Clothing: None<br/>
+                        Head: None<br/>
+                        Emotion: Red Exclamation Mark<br/>
+                        Accessory: Cone Of Shame - Flower<br/>
+                        Accessory: None
                       </div>
                     </div>
                   </a>
                 </div>
                 <div className="col-lg-4 col-sm-6">
-                  <a className="portfolio-box" href="assets/img/portfolio/fullsize/2.png" title="Byte Cat #2">
+                  <a className="portfolio-box" href="assets/img/portfolio/fullsize/2.png" title="Byte Cat">
                     <img className="img-fluid" src="assets/img/portfolio/thumbnails/2.png" alt="..." />
                     <div className="portfolio-box-caption">
-                      <div className="project-category text-white-50">Byte Cat #2</div>
+                      <div className="project-category text-white-50">Byte Cat</div>
                       <div className="project-name">
-                        Background: <br/>
-                        Body: <br/>
-                        Ear: <br/>
-                        Eye: <br/>
-                        Clothing: <br/>
-                        Head: <br/>
-                        Emotion: <br/>
-                        Accessory: <br/>
-                        Accessory: 
+                        Background: Momo<br/>
+                        Body: Blue<br/>
+                        Ear: Grey<br/>
+                        Eyes: Green<br/>
+                        Clothing: Cloak - Black<br/>
+                        Head: Beret - Khaki<br/>
+                        Emotion: ZzZ<br/>
+                        Accessory: None<br/>
+                        Accessory: None
                       </div>
                     </div>
                   </a>
                 </div>
                 <div className="col-lg-4 col-sm-6">
-                  <a className="portfolio-box" href="assets/img/portfolio/fullsize/3.png" title="Byte Cat #3">
+                  <a className="portfolio-box" href="assets/img/portfolio/fullsize/3.png" title="Byte Cat">
                     <img className="img-fluid" src="assets/img/portfolio/thumbnails/3.png" alt="..." />
                     <div className="portfolio-box-caption">
-                      <div className="project-category text-white-50">Byte Cat #3</div>
+                      <div className="project-category text-white-50">Byte Cat</div>
                       <div className="project-name">
-                        Background: <br/>
-                        Body: <br/>
-                        Ear: <br/>
-                        Eye: <br/>
-                        Clothing: <br/>
-                        Head: <br/>
-                        Emotion: <br/>
-                        Accessory: <br/>
-                        Accessory: 
+                        Background: Green<br/>
+                        Body: Pink<br/>
+                        Ear: Grey<br/>
+                        Eyes: Green<br/>
+                        Clothing: Sweater - Yellow<br/>
+                        Head: None<br/>
+                        Emotion: None<br/>
+                        Accessory: Cone Of Shame - Flower<br/>
+                        Accessory: Bubbles
                       </div>
                     </div>
                   </a>
                 </div>
                 <div className="col-lg-4 col-sm-6">
-                  <a className="portfolio-box" href="assets/img/portfolio/fullsize/4.png" title="Byte Cat #4">
+                  <a className="portfolio-box" href="assets/img/portfolio/fullsize/4.png" title="Byte Cat">
                     <img className="img-fluid" src="assets/img/portfolio/thumbnails/4.png" alt="..." />
                     <div className="portfolio-box-caption">
-                      <div className="project-category text-white-50">Byte Cat #4</div>
+                      <div className="project-category text-white-50">Byte Cat</div>
                       <div className="project-name">
-                        Background: <br/>
-                        Body: <br/>
-                        Ear: <br/>
-                        Eye: <br/>
-                        Clothing: <br/>
-                        Head: <br/>
-                        Emotion: <br/>
-                        Accessory: <br/>
-                        Accessory: 
+                        Background: Grey<br/>
+                        Body: Grey<br/>
+                        Ear: Yellow<br/>
+                        Eyes: Default<br/>
+                        Clothing: Cloak - Red<br/>
+                        Head: None<br/>
+                        Emotion: None<br/>
+                        Accessory: None<br/>
+                        Accessory: None
                       </div>
                     </div>
                   </a>
                 </div>
                 <div className="col-lg-4 col-sm-6">
-                  <a className="portfolio-box" href="assets/img/portfolio/fullsize/5.png" title="Byte Cat #5">
+                  <a className="portfolio-box" href="assets/img/portfolio/fullsize/5.png" title="Byte Cat">
                     <img className="img-fluid" src="assets/img/portfolio/thumbnails/5.png" alt="..." />
                     <div className="portfolio-box-caption">
-                      <div className="project-category text-white-50">Byte Cat #5</div>
+                      <div className="project-category text-white-50">Byte Cat</div>
                       <div className="project-name">
-                        Background: <br/>
-                        Body: <br/>
-                        Ear: <br/>
-                        Eye: <br/>
-                        Clothing: <br/>
-                        Head: <br/>
-                        Emotion: <br/>
-                        Accessory: <br/>
-                        Accessory: 
+                        Background: Dark Green<br/>
+                        Body: Blue<br/>
+                        Ear: Grey<br/>
+                        Eyes: Default<br/>
+                        Clothing: None<br/>
+                        Head: Santa Hat - Red<br/>
+                        Emotion: Music<br/>
+                        Accessory: None<br/>
+                        Accessory: None
                       </div>
                     </div>
                   </a>
                 </div>
                 <div className="col-lg-4 col-sm-6">
-                  <a className="portfolio-box" href="assets/img/portfolio/fullsize/6.png" title="Byte Cat #6">
+                  <a className="portfolio-box" href="assets/img/portfolio/fullsize/6.png" title="Byte Cat">
                     <img className="img-fluid" src="assets/img/portfolio/thumbnails/6.png" alt="..." />
                     <div className="portfolio-box-caption p-3">
-                      <div className="project-category text-white-50">Byte Cat #6</div>
+                      <div className="project-category text-white-50">Byte Cat</div>
                       <div className="project-name">
-                        Background: <br/>
-                        Body: <br/>
-                        Ear: <br/>
-                        Eye: <br/>
-                        Clothing: <br/>
-                        Head: <br/>
-                        Emotion: <br/>
-                        Accessory: <br/>
-                        Accessory: 
+                        Background: Grey<br/>
+                        Body: Brown<br/>
+                        Ear: Grey<br/>
+                        Eye: Default<br/>
+                        Clothing: None<br/>
+                        Head: None<br/>
+                        Emotion: Check Mark<br/>
+                        Accessory: None<br/>
+                        Accessory: Christmas Tree
                       </div>
                     </div>
                   </a>
@@ -375,8 +375,8 @@ export default function Home() {
               <h2 className="text-white mt-0">Follow us🎁</h2>
               <hr className="divider" />
               <a className="m-2 btn btn-light btn-xl" href="https://twitter.com/ByteLandNFT" target="_blank" rel="noreferrer">Twitter</a>
-              <a className="m-2 btn btn-light btn-xl" href="https://www.instagram.com/byteland_nft" target="_blank" rel="noreferrer">Instagram</a>
-              <a className="m-2 btn btn-light btn-xl">Discord (soon)</a>
+              {/* <a className="m-2 btn btn-light btn-xl" href="https://www.instagram.com/byteland_nft" target="_blank" rel="noreferrer">Instagram</a> */}
+              <a className="m-2 btn btn-light btn-xl" href="https://discord.gg/UDxsG3nM6h" target="_blank" rel="noreferrer">Discord</a>
             </div>
           </div>
         </div>
@@ -390,11 +390,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <footer className="py-1">
-        <div className="container px-4 px-lg-5">
-          <div className="small text-center">Copyright © 2021 - Byteland</div>
-        </div>
-      </footer>
+      <Footer />
       <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" strategy="beforeInteractive"></Script>
       <Script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js" strategy="beforeInteractive"></Script>
       <Script src="js/scripts.js" strategy="beforeInteractive"></Script>

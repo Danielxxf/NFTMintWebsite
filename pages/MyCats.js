@@ -1,7 +1,7 @@
 import Web3 from "web3";
 import { useState, useEffect } from 'react';
 import Script from 'next/script';
-import { Header, Navigation, Item, ItemGroup} from '../components/components';
+import { Header, Navigation, Footer, ItemGroup, Image, ImageWithFallback} from '../components/components';
 import {ADDRESS, ABI} from "../config.js";
 
 export default function MyCats(props) {
@@ -46,7 +46,7 @@ export default function MyCats(props) {
         let wallet = handleAccountsChanged[0]
         setWalletAddress(wallet)
         setSignedIn(true)
-        callContractData(wallet)
+        // callContractData(wallet)
       })
       .catch((error) => {
         if (error.code === 4001) {
@@ -115,7 +115,7 @@ export default function MyCats(props) {
       console.log("itemList",itemList)
       var count=0;
       for (var i in itemList){
-        contract.methods.tokenURI(i).call().then(res => {
+        await contract.methods.tokenURI(i).call().then(res => {
           getJSON(res).then(function(data) {
             console.log("data")
             console.log(data)
@@ -153,18 +153,18 @@ export default function MyCats(props) {
       <Header />
       <Navigation signedIn={signedIn} signIn={clickSignIn} walletAddress={walletAddress}/>
       <header className="masthead bg-light" style={{background: "none"}}>
-      <h1 className="text-center text-white-75">My Cats</h1>
+      <h1 className="text-center text-white-75 mt-2">My Cats</h1>
       <div className="container px-4 px-lg-5">
         <div className="m-5" id="portfolio">
           <div className="container-fluid p-0">
             <div className="row g-0">
-              <ItemGroup metaData={metadataList}/>
+              {/* <ItemGroup metaData={metadataList}/> */}
             </div>
           </div>
         </div>
       </div>
-
       </header>
+      <Footer />
       <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" strategy="beforeInteractive"></Script>
       <Script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js" strategy="beforeInteractive"></Script>
       <Script src="js/scripts.js" strategy="beforeInteractive"></Script>
