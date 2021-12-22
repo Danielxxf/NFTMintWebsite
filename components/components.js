@@ -148,9 +148,9 @@ export function Item(props){
         <div className="portfolio-box-caption">
           <div className="project-name show p-2" style={{color: '#000', background:'rgba(255, 255, 255, 0.9)', fontSize: '1.2rem'}}>
             <a href={props.itemData.image} style={{color: '#2E9AFE'}} target="_blank" rel="noreferrer">ImageURI</a><br/>
-            {props.itemData.attributes.map(itemdata=>(
+            {/* {props.itemData.attributes.map(itemdata=>(
                 <div>{itemdata.trait_type}: {itemdata.value}<br/></div>
-            ))}
+            ))} */}
           </div>
         </div>
       </div>
