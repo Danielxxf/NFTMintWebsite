@@ -100,7 +100,7 @@ export function ConnectButton(props) {
   if (props.signedIn) {
     return (
       <Link href='/MyCats'>
-        <a className="btn btn-primary">Adress: {props.walletAddress.substring(0,6)}...{props.walletAddress.substring(38)}</a>
+        <a className="btn btn-primary">MyCat Adress: {props.walletAddress.substring(0,6)}...{props.walletAddress.substring(38)}</a>
       </Link>
       )
   } 
@@ -141,9 +141,10 @@ export function ItemGroup(props){
 
 export function Item(props){
   return(
-    <div className="col-lg-2 col-sm-6 m-1 text-white-75 text-center" style={{fontSize: '1.5rem'}}>
+    <div className="col-lg-2 col-sm-6 m-2 text-white-75 text-center" style={{fontSize: '1.5rem'}}>
       {props.itemData.name}
       <div className="portfolio-box" href={props.itemData.image} title={props.itemData.name}>
+        Score: {props.itemData.score}<br/>Rank: {props.itemData.rank}<br/>
         <img className="img-fluid show noselect" src={props.itemData.image} alt="..."/>
         <div className="portfolio-box-caption">
           <div className="project-name show p-2" style={{color: '#000', background:'rgba(255, 255, 255, 0.9)', fontSize: '1.2rem'}}>
