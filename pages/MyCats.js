@@ -46,7 +46,7 @@ export default function MyCats(props) {
         let wallet = handleAccountsChanged[0]
         setWalletAddress(wallet)
         setSignedIn(true)
-        // callContractData(wallet)
+        callContractData(wallet)
       })
       .catch((error) => {
         if (error.code === 4001) {
@@ -158,7 +158,7 @@ export default function MyCats(props) {
         <div className="m-5" id="portfolio">
           <div className="container-fluid p-0">
             <div className="row g-0">
-              {/* <ItemGroup metaData={metadataList}/> */}
+              <ItemGroup metaData={metadataList}/>
             </div>
           </div>
         </div>

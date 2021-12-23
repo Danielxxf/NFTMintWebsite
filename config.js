@@ -1,5 +1,5 @@
 
-export const ADDRESS = "0x9b67d551F63FF1427F4D7D7f6a52fE4e38E44Dc6"
+export const ADDRESS = "0x264df8e509e90500150b5e33c86856b6e877d6a2"
 export const ABI = [
 	{
 		"inputs": [],
@@ -78,19 +78,6 @@ export const ABI = [
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "burn",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
 				"name": "amount",
 				"type": "uint256"
 			}
@@ -147,7 +134,7 @@ export const ABI = [
 				"type": "uint256"
 			}
 		],
-		"name": "reserveGiveaway",
+		"name": "reserveTokens",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -225,7 +212,7 @@ export const ABI = [
 		"inputs": [
 			{
 				"internalType": "string",
-				"name": "newBaseURI",
+				"name": "_baseURI",
 				"type": "string"
 			}
 		],
@@ -263,8 +250,21 @@ export const ABI = [
 	{
 		"inputs": [
 			{
+				"internalType": "contract KeyStore",
+				"name": "_keyStore",
+				"type": "address"
+			}
+		],
+		"name": "setKeyStore",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "uint256",
-				"name": "newMaxBuy",
+				"name": "_maxMint",
 				"type": "uint256"
 			}
 		],
@@ -284,7 +284,7 @@ export const ABI = [
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "newPrice",
+				"name": "_price",
 				"type": "uint256"
 			}
 		],
@@ -316,29 +316,18 @@ export const ABI = [
 	{
 		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "uri",
-				"type": "string"
+				"internalType": "contract URICounter",
+				"name": "_uriCounter",
+				"type": "address"
 			}
 		],
-		"name": "setURI",
+		"name": "setURICounter",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "newURIKey",
-				"type": "string"
-			}
-		],
+		"inputs": [],
 		"name": "setURIKey",
 		"outputs": [],
 		"stateMutability": "nonpayable",
@@ -755,25 +744,6 @@ export const ABI = [
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_id",
-				"type": "uint256"
-			}
-		],
-		"name": "tokenExists",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
 			}
 		],
 		"stateMutability": "view",

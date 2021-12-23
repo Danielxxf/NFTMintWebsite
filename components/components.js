@@ -149,8 +149,17 @@ export function Item(props){
           <div className="project-name show p-2" style={{color: '#000', background:'rgba(255, 255, 255, 0.9)', fontSize: '1.2rem'}}>
             <a href={props.itemData.image} style={{color: '#2E9AFE'}} target="_blank" rel="noreferrer">ImageURI</a><br/>
             {/* {props.itemData.attributes.map(itemdata=>(
-                <div>{itemdata.trait_type}: {itemdata.value}<br/></div>
+                <div key={}>{itemdata.trait_type}: {itemdata.value}<br/></div>
             ))} */}
+            Background: {props.itemData.attributes[0].value}<br/>
+            Body: {props.itemData.attributes[1].value}<br/>
+            Ear: {props.itemData.attributes[2].value}<br/>
+            Eye: {props.itemData.attributes[3].value}<br/>
+            Clothing: {props.itemData.attributes[4].value}<br/>
+            Head: {props.itemData.attributes[5].value}<br/>
+            Emotion: {props.itemData.attributes[6].value}<br/>
+            Accessory: {props.itemData.attributes[7].value}<br/>
+            Accessory: {props.itemData.attributes[8].value}
           </div>
         </div>
       </div>
