@@ -35,7 +35,7 @@ export default function MyCats(props) {
         // checks if connected network is mainnet (change this to rinkeby if you wanna test on testnet)
         .then((network) => {
           console.log(network);
-          if(network != 4002){
+          if(network != 250){
             setRightNetwork(false)
             alert("You are on wrong network. Please switch to Fantom Mainnet or you won't be able to do anything here")
             switchToRight()
@@ -68,7 +68,7 @@ export default function MyCats(props) {
       // Handle the new chain.
       // Correctly handling chain changes can be complicated.
       // We recommend reloading the page unless you have good reason not to.
-      if(chainId != 4002){
+      if(chainId != 250){
         setRightNetwork(false)
       } else setRightNetwork(true)
     });
@@ -79,7 +79,7 @@ export default function MyCats(props) {
     try {
       await ethereum.request({
         method: 'wallet_switchEthereumChain',
-        params: [{ chainId: '0xfa2' }],
+        params: [{ chainId: '0xfa' }],
       });
     } catch (switchError) {
       // This error code indicates that the chain has not been added to MetaMask.
@@ -87,7 +87,7 @@ export default function MyCats(props) {
         try {
           await ethereum.request({
             method: 'wallet_addEthereumChain',
-            params: [{ chainId: '0xfa2', rpcUrl: 'https://rpc.testnet.fantom.network/' /* ... */ }],
+            params: [{ chainId: '0xfa', rpcUrl: 'https://rpc.ftm.tools/' /* ... */ }],
           });
         } catch (addError) {
           // handle "add" error
