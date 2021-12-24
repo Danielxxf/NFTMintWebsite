@@ -115,7 +115,8 @@ export default function MyCats(props) {
       console.log("itemList",itemList)
       var count=0;
       for (var i in itemList){
-        await contract.methods.tokenURI(i).call().then(res => {
+        console.log("i",itemList[i])
+        await contract.methods.tokenURI(itemList[i]).call().then(res => {
           getJSON(res).then(function(data) {
             console.log("data")
             console.log(data)
@@ -152,10 +153,10 @@ export default function MyCats(props) {
     <>
       <Header />
       <Navigation signedIn={signedIn} signIn={clickSignIn} walletAddress={walletAddress}/>
-      <header className="masthead bg-light" style={{background: "none"}}>
+      <header className="masthead bg-light p-5" style={{background: "none", height: "auto"}}>
       <h1 className="text-center text-white-75 mt-2">My Cats</h1>
-      <div className="container px-4 px-lg-5">
-        <div className="m-5" id="portfolio">
+      <div className="container px-4 px-lg-6">
+        <div className="mt-5" id="portfolio">
           <div className="container-fluid p-0">
             <div className="row g-0">
               <ItemGroup metaData={metadataList}/>

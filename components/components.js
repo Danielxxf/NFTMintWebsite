@@ -115,7 +115,7 @@ export function ConnectButton(props) {
 
 export function ItemGroup(props){
   var sortedMetaData = props.metaData.sort(function(a,b){
-    return a.tokenId>b.tokenId ? 1:-1
+    return parseInt(a.tokenId)>parseInt(b.tokenId) ? 1:-1
   })
 
   // Aready get metadata
