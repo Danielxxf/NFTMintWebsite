@@ -36,7 +36,9 @@ export class Navigation extends Component {
         <Link href="/">
           <a className="navbar-brand">Byteland</a>
         </Link>
-        <ConnectButton signedIn={this.props.signedIn} signIn={this.props.signIn} walletAddress={this.props.walletAddress} />
+        <div>
+          <ConnectButton signedIn={this.props.signedIn} signIn={this.props.signIn} walletAddress={this.props.walletAddress} />
+        </div>
       </div>
     </nav>
   }
@@ -99,9 +101,12 @@ export function ConnectButton(props) {
  
   if (props.signedIn) {
     return (
-      <Link href='/MyCats'>
-        <a className="btn btn-primary">MyCat Adress: {props.walletAddress.substring(0,6)}...{props.walletAddress.substring(38)}</a>
-      </Link>
+      <>
+        <Link href='/mycats'>
+          <button className="btn btn-primary">My NFTs</button>
+        </Link>
+        <button className="btn btn-primary">Adress: {props.walletAddress.substring(0,6)}...{props.walletAddress.substring(38)}</button>
+      </>
       )
   } 
   else {

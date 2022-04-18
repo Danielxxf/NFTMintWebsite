@@ -207,7 +207,6 @@ export default function Home() {
                 <span>  Byte Cats!</span><br />
                 <span>(max: 10)</span>
               </div>
-              {/* <button className="btn btn-xl btn-primary">Mint has not started yet.</button> */}
               <MintButton onClick={() => Mint(how_many_nfts)} saleStarted={saleStarted} nfts={how_many_nfts} signedIn={signedIn} price={nftPrice} rightNetwork={rightNetwork}/>
             </div>
           </div>
@@ -375,7 +374,6 @@ export default function Home() {
               <h2 className="text-white mt-0">Follow us🎁</h2>
               <hr className="divider" />
               <a className="m-2 btn btn-light btn-xl" href="https://twitter.com/ByteLandNFT" target="_blank" rel="noreferrer">Twitter</a>
-              {/* <a className="m-2 btn btn-light btn-xl" href="https://www.instagram.com/byteland_nft" target="_blank" rel="noreferrer">Instagram</a> */}
               <a className="m-2 btn btn-light btn-xl" href="https://discord.gg/UDxsG3nM6h" target="_blank" rel="noreferrer">Discord</a>
             </div>
           </div>

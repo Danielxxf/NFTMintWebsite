@@ -154,16 +154,16 @@ export default function MyCats(props) {
       <Header />
       <Navigation signedIn={signedIn} signIn={clickSignIn} walletAddress={walletAddress}/>
       <header className="masthead bg-light p-5" style={{background: "none", height: "auto"}}>
-      <h1 className="text-center text-white-75 mt-2">My Cats</h1>
-      <div className="container px-4 px-lg-6">
-        <div className="mt-5" id="portfolio">
-          <div className="container-fluid p-0">
-            <div className="row g-0">
-              <ItemGroup metaData={metadataList}/>
+        <h1 className="text-center text-white-75 mt-2">My Cats</h1>
+        <div className="container px-4 px-lg-6">
+          <div className="mt-5" id="portfolio">
+            <div className="container-fluid p-0">
+              <div className="row g-0">
+                <ItemGroup metaData={metadataList}/>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </header>
       <Footer />
       <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" strategy="beforeInteractive"></Script>
